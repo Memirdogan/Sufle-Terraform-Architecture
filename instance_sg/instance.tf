@@ -1,6 +1,6 @@
 resource "aws_instance" "emir_bastion_host" {
   ami           = "ami-08eb150f611ca277f"
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
   subnet_id     = data.terraform_remote_state.out_vpc.outputs.public_subnet_id
 
   security_groups = [
@@ -16,7 +16,7 @@ resource "aws_instance" "emir_bastion_host" {
 resource "aws_instance" "emir_ec2_instances" {
   count         = 2
   ami           = "ami-08eb150f611ca277f"
-  instance_type = "t2.micro"
+  instance_type = "t3.micro"
   subnet_id     = data.terraform_remote_state.out_vpc.outputs.private_subnet_id
   security_groups = [
     aws_security_group.emir_ec2_sg.id
