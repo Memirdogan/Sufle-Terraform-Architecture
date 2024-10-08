@@ -3,6 +3,5 @@ resource "aws_internet_gateway" "igw" {
   tags = {
     Name = "emir_igw"
     Owner = "emir"
-
   }
 }

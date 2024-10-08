@@ -12,7 +12,12 @@ resource "aws_route_table" "emir_public_route_table1" {
   }
 }
 
-resource "aws_route_table_association" "public_subnet_assoc" {
-  subnet_id      = aws_subnet.emir_public_subnet1_eu_north_1a.id
+resource "aws_route_table_association" "public_subnet_assoc1" {
+  subnet_id      = aws_subnet.emir_public_subnet1_eu_central_1a.id
+  route_table_id = aws_route_table.emir_public_route_table1.id
+}
+
+resource "aws_route_table_association" "public_subnet_assoc2" {
+  subnet_id      = aws_subnet.emir_public_subnet2_eu_central_1b.id
   route_table_id = aws_route_table.emir_public_route_table1.id
 }

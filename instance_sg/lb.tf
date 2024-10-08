@@ -3,7 +3,8 @@ resource "aws_lb" "emir_app_lb" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.emir_lb_sg.id]
-  subnets            = [data.terraform_remote_state.out_vpc.outputs.public_subnet_id]
+  subnets = [data.terraform_remote_state.out_vpc.outputs.public_subnet_id,
+  data.terraform_remote_state.out_vpc.outputs.public_subnet_id2]
 
   enable_deletion_protection = false
 
