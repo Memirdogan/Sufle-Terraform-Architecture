@@ -14,11 +14,3 @@ output "public_subnet_id2" {
 output "private_subnet_id" {
   value = aws_subnet.emir_private_subnet1_eu_central_1a.id
 }
-
-output "ssm_endpoint_id" {
-  value       = aws_vpc_endpoint.ssm_endpoint.id
-}
-
-output "ec2_endpoint_id" {
-  value       = aws_vpc_endpoint.ec2_endpoint.id
-}
