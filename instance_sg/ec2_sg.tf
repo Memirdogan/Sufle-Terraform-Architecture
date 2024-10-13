@@ -18,8 +18,9 @@ resource "aws_security_group" "emir_ec2_sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  
   ingress {
-    description = "https"
+    description = "Allow HTTPs from Load Balancer"
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
