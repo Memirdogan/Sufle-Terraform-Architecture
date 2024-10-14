@@ -1,11 +1,12 @@
 resource "aws_eip" "nat_eip" {
-  vpc = true
+  domain = "vpc"
 }
+
 
 
 resource "aws_nat_gateway" "nat" {
   allocation_id = aws_eip.nat_eip.id #elastic ip atama
-  subnet_id     = data.terraform_remote_state.out_vpc.outputs.public_subnet_id 
+  subnet_id     = aws_subnet.emir_public_subnet1_eu_central_1a.id
   depends_on    = [aws_internet_gateway.igw]  # igw bağlantısı
 }
 
