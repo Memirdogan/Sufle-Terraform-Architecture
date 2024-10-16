@@ -1,5 +1,5 @@
 resource "aws_key_pair" "deployer" {
-  key_name   = "deployer-key"
+  key_name   = "memir"
   public_key = file("/home/emir/.ssh/id_rsa.pub")
 }
 
