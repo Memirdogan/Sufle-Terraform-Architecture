@@ -19,3 +19,4 @@ resource "aws_subnet" "emir_public_subnet2_eu_central_1b" {
     Owner = "emir"
   }
 }
+

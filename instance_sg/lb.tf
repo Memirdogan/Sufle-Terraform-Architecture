@@ -6,22 +6,13 @@ resource "aws_lb" "emir_app_lb" {
   subnets = [data.terraform_remote_state.out_vpc.outputs.public_subnet_id,
   data.terraform_remote_state.out_vpc.outputs.public_subnet_id2]
 
-  enable_deletion_protection = false
-
   tags = {
     Name  = "App-Load-Balancer"
     Owner = "Emir"
   }
 }
 
-resource "aws_lb_target_group" "emir_app_tg" { # isteklerin hangi EC2'lere yönlendirilmesi gerektiğini belirler.
-  name     = "app-tg"
-  port     = 80
-  protocol = "HTTP"
-  vpc_id   = data.terraform_remote_state.out_vpc.outputs.vpc_id
-}
-
-resource "aws_lb_listener" "emir_app_lb_listener" { # listener'in hangi Load Balancer için çalışacağını belirler.
+resource "aws_lb_listener" "emir_app_lb_listener" {
   load_balancer_arn = aws_lb.emir_app_lb.arn
   port              = "80"
   protocol          = "HTTP"
@@ -32,7 +23,15 @@ resource "aws_lb_listener" "emir_app_lb_listener" { # listener'in hangi Load Bal
   }
 }
 
-resource "aws_lb_target_group_attachment" "emir_app_tg_attachment" { # EC2'leri Target Group'a bağlar. Burada iki EC2'yi bağlayacak şekilde yapılandırılmış
+resource "aws_lb_target_group" "emir_app_tg" {
+  name     = "app-tg"
+  port     = 80
+  protocol = "HTTP"
+  vpc_id   = data.terraform_remote_state.out_vpc.outputs.vpc_id
+}
+
+
+resource "aws_lb_target_group_attachment" "emir_app_tg_attachment" {
   count            = 2
   target_group_arn = aws_lb_target_group.emir_app_tg.arn
   target_id        = aws_instance.emir_ec2_instances[count.index].id

@@ -17,3 +17,10 @@ data "terraform_remote_state" "out_vpc" {
     path = "/home/emir/Masaüstü/app/terraform/Sufle_Terraform/vpc/terraform.tfstate"
   }
 }
+
+data "terraform_remote_state" "key_pair" {
+  backend = "local"
+  config = {
+    path = "/home/emir/Masaüstü/app/terraform/Sufle_Terraform/keypair/terraform.tfstate"
+  }
+}

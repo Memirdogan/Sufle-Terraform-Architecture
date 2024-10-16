@@ -1,6 +1,5 @@
 output "vpc_id" {
   value = aws_vpc.emirvpc.id
-  description = "VPC ID"
 }
 
 output "public_subnet_id" {
