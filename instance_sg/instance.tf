@@ -3,7 +3,7 @@ resource "aws_instance" "emir_bastion_host" {
   instance_type = "t3.micro"
   subnet_id     = data.terraform_remote_state.out_vpc.outputs.public_subnet_id
 
-  key_name = data.terraform_remote_state.key_pair.outputs.deployer_key_name
+  key_name = "memir"
 
   security_groups = [
     aws_security_group.emir_bastion_sg.id
@@ -21,7 +21,7 @@ resource "aws_instance" "emir_ec2_instances" {
   instance_type = "t3.micro"
   subnet_id     = data.terraform_remote_state.out_vpc.outputs.private_subnet_id
 
-  key_name = data.terraform_remote_state.key_pair.outputs.deployer_key_name
+  key_name = "memir"
 
   security_groups = [
     aws_security_group.emir_ec2_sg.id
