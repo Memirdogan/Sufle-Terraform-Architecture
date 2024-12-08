@@ -21,3 +21,4 @@ resource "aws_security_group" "emir_bastion_sg" {
     Owner = "Emir"
   }
 }
+
